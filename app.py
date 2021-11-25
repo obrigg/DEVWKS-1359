@@ -15,7 +15,6 @@ or implied.
 from flask import Flask, render_template, request, url_for, redirect, session
 from requests.auth import HTTPBasicAuth
 import backend
-import mab_cleanup
 from time import ctime, sleep, time
 from threading import Thread
 
