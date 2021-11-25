@@ -83,7 +83,7 @@ def index():
             return render_template('endpointQuery.html', error=True, errorcode=e)
     else:
         print("First you need to login")
-        return redirect(url_for('login'))
+        return redirect(url_for('login', _scheme='https', _external=True))
 
 @app.route('/deviceList', methods=['GET', 'POST'])
 def deviceList():
@@ -252,7 +252,7 @@ def login():
             session['logged_in'] = int(time()) + backend.timeout
             session['username'] = name
             print(f"Logged in until: {ctime(session['logged_in'])}")
-            return redirect(url_for('index'))
+            return redirect(url_for('index', _scheme='https', _external=True))
         else:
             print("Failed login")
             return render_template('login.html')
@@ -263,4 +263,4 @@ if __name__ == "__main__":
     t1 = Thread(target=voucher_cleanup_loop)
     t1.start()
     sleep(1)
-    app.run(host='0.0.0.0', debug=False, threaded=True, port=5555)
+    app.run(host='0.0.0.0', debug=False, threaded=True, port=8080)
